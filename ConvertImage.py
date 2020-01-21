@@ -5,8 +5,6 @@ import array as arr
 
 def convert_file(ImageUrl):
 
-    a = arr.array('d', [1.1, 3.5, 4.5])
-
     # récupération de l'image sur le serveur
     img = cv2.imread(
         ImageUrl,
@@ -38,6 +36,8 @@ def convert_file(ImageUrl):
             matrixRGB[i, j, 0] = resized[i, j, 0]
             matrixRGB[i, j, 1] = resized[i, j, 1]
             matrixRGB[i, j, 2] = resized[i, j, 2]
+
+    print(matrixRGB)
 
     cv2.imshow("resultat en 16x16", matrixRGB)
     cv2.waitKey(0)
