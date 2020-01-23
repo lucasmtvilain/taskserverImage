@@ -14,11 +14,11 @@ def allowed_file(filename):
 
 @app.route('/', methods = ['GET', 'POST'])
 def index():
-    return 'index !'
-
+    return '{"title": "The Basics - Networking","description": "Your app fetched this from a remote endpoint!","movies": [{ "id":"1", "title": "l\'api fonctionne","releaseYear": "!" }]}'
 # Upload des fichier
 @app.route('/file-upload', methods=['POST'])
 def upload_file():
+    print(request.files)
 	# check if the post request has the file part
     if 'file' not in request.files:
         resp = jsonify({'message' : 'No file part in the request'})
@@ -59,5 +59,5 @@ def upload_file():
 
 if __name__ == "__main__":
     # !!!!! Mettre l'ip du raspberry !!!!!!!!!!!!!
-    #app.run(host="192.168.43.198", port="5000")
+    #app.run(host="192.168.1.25", port="5000")
     app.run()

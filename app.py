@@ -1,6 +1,6 @@
 from flask import Flask
 
-UPLOAD_FOLDER = 'C:/Users/Utilisateur/Documents/Cours/5_annee/rasberry/neopixel/template'
+UPLOAD_FOLDER = 'C:/Users/Utilisateur/Documents/Cours/5_annee/rasberry/serverUpload/template'
 
 app = Flask(__name__)
 app.secret_key = "secret key"

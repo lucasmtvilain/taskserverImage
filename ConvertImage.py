@@ -1,6 +1,6 @@
 import cv2
 import numpy
-import array as arr
+import rechercheMatrice
 
 
 def convert_file(ImageUrl):
@@ -20,8 +20,10 @@ def convert_file(ImageUrl):
         width = int(width / scale_percent)
         height = int(height / scale_percent)
 
-    print("width : ", width)
-    print("height : ", height)
+    #print("width : ", width)
+    #print("height : ", height)
+
+    matrixNeo = rechercheMatrice.createTableauLed(height,width)
 
     # dim = (16, 16)
     dim = (width, height)
@@ -36,12 +38,21 @@ def convert_file(ImageUrl):
             matrixRGB[i, j, 0] = resized[i, j, 0]
             matrixRGB[i, j, 1] = resized[i, j, 1]
             matrixRGB[i, j, 2] = resized[i, j, 2]
+            #print(rechercheMatrice.retourneLedNumero(matrixNeo,i,j))
 
-    print(matrixRGB)
+    #for i in range(height):
+        #for j in range(width):
+            #print(rechercheMatrice.retourneLedNumero(matrixNeo,i,j))
+
+
+    #print(matrixRGB)
+
+
 
     cv2.imshow("resultat en 16x16", matrixRGB)
-    cv2.waitKey(0)
-    cv2.destroyAllWindows()
+    #cv2.waitKey(0)
+    #cv2.destroyAllWindows()
+    print('image uploadé !')
 
 
-#convert_file('C:/Users/Utilisateur/Documents/Cours/5_annee/rasberry/neopixel/template/3e955725ca2dc877992d9740458dc94a.jpg')
+#convert_file('C:/Users/Utilisateur/Documents/Cours/5_annee/rasberry/serverUpload/template/test.png')
