@@ -18,11 +18,10 @@ def createTableauLed(width, heigth):
             i+=1
 
     liste.reverse()
-    #print(liste)
     return liste
 
 def retourneLedNumero(liste, x,y):
-	return liste[y][x]
+    return liste[y][x]
 
 width = 16
 heigth=16

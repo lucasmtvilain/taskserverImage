@@ -16,17 +16,19 @@ def convert_file(ImageUrl):
     #cv2.imshow("Resized image", img)
 
     # Reduction de la taille de l'image
-    scale_percent = 1.1  # percent of original size
-    width = int(img.shape[1] / scale_percent)
-    height = int(img.shape[0] / scale_percent)
+    scale_percent = 60  # percent of original size
+    width = int(img.shape[1] * scale_percent / 100)
+    height = int(img.shape[0] * scale_percent / 100)
 
     while (width >= 16 or height >= 16):
-        width = int(width / scale_percent)
-        height = int(height / scale_percent)
+        width = int(width * scale_percent / 100)
+        height = int(height * scale_percent / 100)
 
-    matrixNeo = rechercheMatrice.createTableauLed(height, width)
+    matrixNeo = rechercheMatrice.createTableauLed(16, 16)
 
-    num_pixels = height*width
+    matrixNeo.reverse()
+
+    num_pixels = 16*16
     pixel_pin = board.D18
     ORDER = neopixel.GRB
 
@@ -35,21 +37,21 @@ def convert_file(ImageUrl):
     # dim = (16, 16)
     dim = (width, height)
     # resize image
-    resized = cv2.resize(img, dim, interpolation=cv2.INTER_AREA)
+    resized = cv2.resize(img, dim, interpolation = cv2.INTER_AREA)
 
     # Conversion image en tableau à 3 entrée
     matrixRGB = numpy.empty((height, width, 3), dtype=numpy.uint8)
 
-    for i in range(height):
-        for j in range(width):
-            matrixRGB[i, j, 0] = resized[i, j, 0]
-            matrixRGB[i, j, 1] = resized[i, j, 1]
-            matrixRGB[i, j, 2] = resized[i, j, 2]
-
-    for i in range(height):
-        for j in range(width):
-            pixels[rechercheMatrice.retourneLedNumero(matrixNeo,i,j)] = (matrixRGB[i, j, 0], matrixRGB[i, j, 1], matrixRGB[i, j, 2])
-
+    print(resized)
+    test = numpy.asarray(resized)
+    test = numpy.flip(test,0)
+    mawidth = width
+    for i in range(0,height):
+        test[i] = numpy.flip(test[i],0)
+        for j in range(0,width):
+            pixels[rechercheMatrice.retourneLedNumero(matrixNeo,j,i)] = (test[i][j][0], test[i][j][1], test[i][j][2])
+        pixels.show()
+        time.sleep(2)
 
 
     time.sleep(10)

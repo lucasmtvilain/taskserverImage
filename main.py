@@ -60,4 +60,4 @@ def upload_file():
 if __name__ == "__main__":
     # !!!!! Mettre l'ip du raspberry !!!!!!!!!!!!!
     #app.run(host="192.168.1.25", port="5000")
-    app.run()
+    app.run(host="172.16.4.25", port="5000")
