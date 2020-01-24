@@ -1,4 +1,4 @@
-import tableau
+import rechercheMatrice
 import cv2
 import numpy
 import neopixel
@@ -12,13 +12,13 @@ def afficheHeure(heure, minute):
 	pixels = neopixel.NeoPixel(pixel_pin, num_pixels, brightness=0.2, auto_write=False, pixel_order=ORDER)
 
 	led = faireHeure(heure, minute)
-	mesLeds = tableau.createTableauLed(16)
+	mesLeds = rechercheMatrice.createTableauLed(16,16)
 	for l in led:
 		x = l[0]
 		y = l[1]
-		maLed = tableau.retourneLedNumero(mesLeds, x,y)
+		maLed = rechercheMatrice.retourneLedNumero(mesLeds, x,y)
 		#pixels[maLed] = (76, 65, 98)
-	pixels[tableau.retourneLedNumero(mesLeds, 0,3)]= (76, 65, 98)
+	pixels[rechercheMatrice.retourneLedNumero(mesLeds, 0,3)]= (76, 65, 98)
 	pixels.show()
 
 def faireHeure(heure, minutes):
