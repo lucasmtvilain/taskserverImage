@@ -13,4 +13,4 @@ def eteindreLeds():
 		pixels[l] = (0, 0, 0)
 	pixels.show()
 
-
+	time.sleep(10)
