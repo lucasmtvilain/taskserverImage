@@ -8,6 +8,9 @@ def eteindreLeds():
 
 	pixels = neopixel.NeoPixel(pixel_pin, num_pixels, brightness=0.2, auto_write=False, pixel_order=ORDER)
 	mesLeds = rechercheMatrice.createTableauLed(16,16)
+	print("je suis la")
 	for l in (0,254):
 		pixels[l] = (0, 0, 0)
 	pixels.show()
+
+

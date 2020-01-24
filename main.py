@@ -71,8 +71,9 @@ def heure():
         time.sleep(600)
 @app.route('/eteindre', methods=['GET'])
 def eteindre():
-    EteindreLeds. eteindreLeds()
-
+    EteindreLeds.eteindreLeds()
+    resp = jsonify({'message': 'eteindre'})
+    return resp
 if __name__ == "__main__":
     # !!!!! Mettre l'ip du raspberry !!!!!!!!!!!!!
     #app.run(host="127.0.0.1", port="5000")
