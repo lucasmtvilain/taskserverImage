@@ -9,17 +9,17 @@ def afficheHeure(heure, minute):
 	pixel_pin = board.D18
 	ORDER = neopixel.GRB
 
-	pixels = neopixel.NeoPixel(pixel_pin, num_pixels, brightness=0.2, auto_write=False, pixel_order=ORDER)
+	pixels = neopixel.NeoPixel(pixel_pin, num_pixels, auto_write=True, pixel_order=ORDER)
 
 	led = faireHeure(heure, minute)
 	mesLeds = rechercheMatrice.createTableauLed(16,16)
 	for l in led:
-		x = l[0]
-		y = l[1]
-		maLed = rechercheMatrice.retourneLedNumero(mesLeds, x,y)
-		pixels[maLed] = (76, 65, 98)
+            x = l[0]
+            y = l[1]
+            maLed = rechercheMatrice.retourneLedNumero(mesLeds, x,y)
+            pixels[maLed] = (76, 65, 98)
 	#pixels[rechercheMatrice.retourneLedNumero(mesLeds, 0,3)]= (76, 65, 98)
-	pixels.show()
+	#pixels.show()
 
 def faireHeure(heure, minutes):
 	tableauLed = []
@@ -120,4 +120,4 @@ def deternimateNumber(tableauLed,xdepart,chiffre):
 			tableauLed.append([xmax, y])		
 	return tableauLed
 
-afficheHeure("10","10")
+#afficheHeure("10","10")

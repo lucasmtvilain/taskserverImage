@@ -9,7 +9,7 @@ def createTableauLed(width, height):
 
 	cpt = 0
 	for i in range (0, height):
-		if cpt == 64:
+		if cpt == 64 or cpt == 111:
 			print(cpt)
 			cpt -= 1
 			print(cpt)

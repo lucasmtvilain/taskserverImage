@@ -66,11 +66,12 @@ def upload_file():
 def heure():
     h = time.strftime('%H')
     m = time.strftime('%M')
-    while (1):
-        ConvertHeure.afficheHeure(h, m)
-        time.sleep(600)
+    ConvertHeure.afficheHeure(h, m)
+    resp = jsonify({'message': 'heure'})
+    return resp
 @app.route('/eteindre', methods=['GET'])
 def eteindre():
+    time.sleep(10)
     EteindreLeds.eteindreLeds()
     resp = jsonify({'message': 'eteindre'})
     return resp
