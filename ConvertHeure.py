@@ -17,8 +17,8 @@ def afficheHeure(heure, minute):
 		x = l[0]
 		y = l[1]
 		maLed = rechercheMatrice.retourneLedNumero(mesLeds, x,y)
-		#pixels[maLed] = (76, 65, 98)
-	pixels[rechercheMatrice.retourneLedNumero(mesLeds, 0,3)]= (76, 65, 98)
+		pixels[maLed] = (76, 65, 98)
+	#pixels[rechercheMatrice.retourneLedNumero(mesLeds, 0,3)]= (76, 65, 98)
 	pixels.show()
 
 def faireHeure(heure, minutes):

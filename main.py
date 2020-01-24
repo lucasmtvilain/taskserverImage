@@ -1,5 +1,5 @@
 import os
-#import ConvertImage
+import ConvertImage
 import ConvertHeure
 import EteindreLeds
 import time
@@ -68,7 +68,7 @@ def heure():
     m = time.strftime('%M')
     while (1):
         ConvertHeure.afficheHeure(h, m)
-        time.sleep(10000)
+        time.sleep(600)
 @app.route('/eteindre', methods=['GET'])
 def eteindre():
     EteindreLeds. eteindreLeds()
