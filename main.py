@@ -75,5 +75,5 @@ def eteindre():
 
 if __name__ == "__main__":
     # !!!!! Mettre l'ip du raspberry !!!!!!!!!!!!!
-    app.run(host="127.0.0.1", port="5000")
-    #app.run(host="172.16.4.25", port="5000")
+    #app.run(host="127.0.0.1", port="5000")
+    app.run(host="172.16.4.25", port="5000")
