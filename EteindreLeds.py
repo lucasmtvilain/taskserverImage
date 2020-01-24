@@ -1,5 +1,5 @@
-#import neopixel
-#import board
+import neopixel
+import board
 import rechercheMatrice
 def eteindreLeds():
 	num_pixels = 16 * 16
