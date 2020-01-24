@@ -1,5 +1,8 @@
 import os
-import ConvertImage
+#import ConvertImage
+import ConvertHeure
+import EteindreLeds
+import time
 import urllib.request
 from app import app
 from flask import Flask, request, redirect, jsonify
@@ -15,49 +18,60 @@ def allowed_file(filename):
 @app.route('/', methods = ['GET', 'POST'])
 def index():
     return '{"title": "The Basics - Networking","description": "Your app fetched this from a remote endpoint!","movies": [{ "id":"1", "title": "l\'api fonctionne","releaseYear": "!" }]}'
-# Upload des fichier
-@app.route('/file-upload', methods=['POST'])
-def upload_file():
-    print(request.files)
-	# check if the post request has the file part
-    if 'file' not in request.files:
-        resp = jsonify({'message' : 'No file part in the request'})
-        resp.status_code = 400
-        return resp
-    file = request.files['file']
+# # Upload des fichier
+# @app.route('/file-upload', methods=['POST'])
+# def upload_file():
+#     print(request.files)
+# 	# check if the post request has the file part
+#     if 'file' not in request.files:
+#         resp = jsonify({'message' : 'No file part in the request'})
+#         resp.status_code = 400
+#         return resp
+#     file = request.files['file']
+#
+#     if file.filename == '':
+#         resp = jsonify({'message' : 'No file selected for uploading'})
+#         resp.status_code = 400
+#         return resp
+#
+#     #si le fichier et l'extension sont ok
+#     if file and allowed_file(file.filename):
+#         #recuperation du nom du fichier uploade
+#         filename = secure_filename(file.filename)
+#         #URL du fichier sur le server
+#         fileURL = app.config['UPLOAD_FOLDER']+'/'+file.filename
+#         print(fileURL)
+#         #on enregistre l'image sur le server
+#         file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+#         #reponse au client
+#         resp = jsonify({'message' : 'File successfully uploaded'})
+#         #status code
+#         resp.status_code = 201
+#
+#         # URL du fichier sur le server
+#         fileURL = app.config['UPLOAD_FOLDER'] + '/' + file.filename
+#         print(fileURL)
+#         ConvertImage.convert_file(fileURL)
+#         return resp
+#
+#     else:
+#         #resultat en cas d'erreur
+#         resp = jsonify({'message' : 'Allowed file types are txt, pdf, png, jpg, jpeg, gif'})
+#         resp.status_code = 400
+#         return resp
 
-    if file.filename == '':
-        resp = jsonify({'message' : 'No file selected for uploading'})
-        resp.status_code = 400
-        return resp
-
-    #si le fichier et l'extension sont ok
-    if file and allowed_file(file.filename):
-        #recuperation du nom du fichier uploade
-        filename = secure_filename(file.filename)
-        #URL du fichier sur le server
-        fileURL = app.config['UPLOAD_FOLDER']+'/'+file.filename
-        print(fileURL)
-        #on enregistre l'image sur le server
-        file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-        #reponse au client
-        resp = jsonify({'message' : 'File successfully uploaded'})
-        #status code
-        resp.status_code = 201
-
-        # URL du fichier sur le server
-        fileURL = app.config['UPLOAD_FOLDER'] + '/' + file.filename
-        print(fileURL)
-        ConvertImage.convert_file(fileURL)
-        return resp
-
-    else:
-        #resultat en cas d'erreur
-        resp = jsonify({'message' : 'Allowed file types are txt, pdf, png, jpg, jpeg, gif'})
-        resp.status_code = 400
-        return resp
+@app.route('/heure', methods=['GET'])
+def heure():
+    h = time.strftime('%H')
+    m = time.strftime('%M')
+    while (1):
+        ConvertHeure.afficheHeure(h, m)
+        time.sleep(10000)
+@app.route('/eteindre', methods=['GET'])
+def eteindre():
+    EteindreLeds. eteindreLeds()
 
 if __name__ == "__main__":
     # !!!!! Mettre l'ip du raspberry !!!!!!!!!!!!!
-    #app.run(host="192.168.1.25", port="5000")
-    app.run(host="172.16.4.25", port="5000")
+    app.run(host="127.0.0.1", port="5000")
+    #app.run(host="172.16.4.25", port="5000")
